@@ -1,0 +1,143 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        google()
+    }
+
+    dependencies {
+        classpath 'com.guardsquare:proguard-gradle:7.1.0'
+    }
+}
+
+allprojects {
+    apply plugin: "eclipse"
+
+    version = '1.0'
+    ext {
+        appName = "Pokemon Rancher"
+        gdxVersion = '1.12.1'
+        roboVMVersion = '2.3.20'
+        box2DLightsVersion = '1.5'
+        ashleyVersion = '1.7.4'
+        aiVersion = '1.8.2'
+        gdxControllersVersion = '2.2.3'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://jitpack.io" }
+    }
+}
+
+project(":api") {
+    apply plugin: "java-library"
+
+    dependencies {
+
+    }
+}
+
+project(":desktop") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":core")
+        implementation 'com.beust:jcommander:1.82'
+        api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
+
+        implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+    }
+
+    buildscript {
+        repositories {
+            mavenLocal()
+            mavenCentral()
+            gradlePluginPortal()
+            maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+            google()
+        }
+
+        dependencies {
+            classpath "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        }
+    }
+
+    compileJava {
+        options.fork = true
+        options.forkOptions.jvmArgs << '-Duser.language=en'
+    }
+}
+
+project(":core") {
+    apply plugin: "java-library"
+
+
+    dependencies {
+        implementation project(":api")
+        implementation project(":sample")
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        implementation 'org.ini4j:ini4j:0.5.4'
+        implementation "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
+    }
+
+    compileJava {
+        options.fork = true
+        options.forkOptions.jvmArgs << '-Duser.language=en'
+    }
+}
+
+project(":sample") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":api")
+    }
+}
+
+project(":tools") {
+    apply plugin: "java-library"
+
+    dependencies {
+        implementation project(":core")
+        implementation 'com.beust:jcommander:1.82'
+        api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+        implementation "com.badlogicgames.gdx-controllers:gdx-controllers-desktop:$gdxControllersVersion"
+
+        implementation "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+    }
+
+    buildscript {
+        repositories {
+            mavenLocal()
+            mavenCentral()
+            gradlePluginPortal()
+            maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+            google()
+        }
+
+        dependencies {
+            classpath "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        }
+    }
+
+    compileJava {
+        options.fork = true
+        options.forkOptions.jvmArgs << '-Duser.language=en'
+    }
+}

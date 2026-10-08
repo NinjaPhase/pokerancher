@@ -1,0 +1,13 @@
+sourceCompatibility = 1.8
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+task dist(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+eclipse.project.name = appName + "-api"

@@ -1,0 +1,16 @@
+sourceCompatibility = 1.8
+sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.main.resources.srcDirs = ["resources/"]
+
+import org.gradle.internal.os.OperatingSystem
+
+task dist(type: Jar) {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+    dependsOn configurations.runtimeClasspath
+    with jar
+}
+
+
+dist.dependsOn classes
+
+eclipse.project.name = appName + "-sample"

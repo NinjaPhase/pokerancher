@@ -1,0 +1,65 @@
+{
+  "bulbasaur": {
+    "id": 1,
+    "name": "Bulbasaur",
+    "type": [
+      "grass",
+      "poison"
+    ],
+    "base_stats": [
+      45,
+      49,
+      49,
+      65,
+      65,
+      45
+    ],
+    "growth_rate": "medium_slow",
+    "base_friendship": 70,
+    "exp_yield": 64,
+    "ev_yield": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    "moves": {
+      "level_up": [
+        {
+          "level": 1,
+          "move": "tackle"
+        },
+        {
+          "level": 4,
+          "move": "growl"
+        }
+      ],
+      "tm_hm": []
+    },
+    "forms": [
+      {
+        "images": {
+          "normal": {
+            "front": {
+              "image": "pokemon.atlas$bulbasaur/n_front",
+              "x": 0,
+              "y": 0
+            },
+            "icon": [
+              "pokemon.atlas$bulbasaur/n_icon_0",
+              "pokemon.atlas$bulbasaur/n_icon_1"
+            ]
+          },
+          "shiny": {
+            "icon": [
+              "pokemon.atlas$bulbasaur/n_icon_0",
+              "pokemon.atlas$bulbasaur/n_icon_1"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

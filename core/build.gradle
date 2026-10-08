@@ -1,0 +1,5 @@
+sourceCompatibility = 1.8
+
+sourceSets.main.java.srcDirs = ["src/main"]
+
+eclipse.project.name = appName + "-core"
